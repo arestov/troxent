@@ -101,7 +101,10 @@ module.exports = {
 			if (downloads_index[ infoHash ] == torrent) {
 				console.log("REMOVE", infoHash);
 				downloads_index[ infoHash ] = null;
-				client.remove(torrent_obj);
+				if (client.get(torrent_obj)) {
+					client.remove(torrent_obj);
+				}
+				
 				console.log( 'after removing', count( downloads_index ) );
 			}
 			
